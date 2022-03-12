@@ -8,8 +8,11 @@ import {
   PaperAirplaneIcon,
 } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Header = () => {
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <div className='shadow-sm border-b z-50 sticky'>
       <div className='flex justify-between max-w-6xl mx-5 lg:mx-auto'>
@@ -48,19 +51,26 @@ const Header = () => {
         <div className='flex items-center justify-end space-x-4'>
           <HomeIcon className='h-10 navBtn' />
           <MenuIcon className='h-6 md:hidden cursor-pointer' />
-          <div className='relative navBtn'>
-            <PaperAirplaneIcon className='navBtn' />
-            <div className='flex bg-red-500 rounded-full w-5 h-5 items-center justify-center absolute -top-1 animate-pulse cursor-pointer'>
-              3
-            </div>
-          </div>
-          <PlusCircleIcon className='navBtn' />
-          <UserGroupIcon className='navBtn' />
-          <HeartIcon className='navBtn' />
-          <img
-            src='/images/statue.jpeg'
-            className='w-10 h-10 rounded-full cursor-pointer'
-          />
+          {session ? (
+            <>
+              <div className='relative navBtn'>
+                <PaperAirplaneIcon className='navBtn' />
+                <div className='flex bg-red-500 rounded-full w-5 h-5 items-center justify-center absolute -top-1 animate-pulse cursor-pointer'>
+                  3
+                </div>
+              </div>
+              <PlusCircleIcon className='navBtn' />
+              <UserGroupIcon className='navBtn' />
+              <HeartIcon className='navBtn' />
+              <img
+                onClick={signOut}
+                src='/images/statue.jpeg'
+                className='w-10 h-10 rounded-full cursor-pointer'
+              />
+            </>
+          ) : (
+            <button onClick={signIn}>Sign In</button>
+          )}
         </div>
       </div>
     </div>
