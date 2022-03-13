@@ -11,7 +11,7 @@ const Posts = () => {
         "I am a caption for dummy data  yoooooo whatsup hows it going this data is super cool this instagram clone is better",
     },
     {
-      id: "123",
+      id: "125",
       username: "JohnDoe1",
       userImg: "/images/statue.jpeg",
       caption:

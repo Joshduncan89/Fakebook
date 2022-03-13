@@ -10,8 +10,6 @@ const Suggestions = () => {
     }));
     setSuggestions(data);
   }, []);
-
-  console.log(suggestions);
   return (
     <div>
       <div className='flex items-center ml-10 my-5 justify-between'>

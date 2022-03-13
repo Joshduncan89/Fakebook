@@ -9,22 +9,39 @@ import {
 } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+import { modalState } from "../atoms/modalAtoms";
+import { useRecoilState } from "recoil";
 
 const Header = () => {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  const [toggleModal, setToggleModal] = useRecoilState(modalState);
   console.log(session);
+
+  const triggerModal = () => {
+    setToggleModal(true);
+  };
+
   return (
-    <div className='shadow-sm border-b z-50 sticky'>
+    <div className='shadow-sm border-b z-50 bg-white sticky'>
       <div className='flex justify-between max-w-6xl mx-5 lg:mx-auto'>
         {/* LEFT Logo*/}
-        <div className='relative hidden lg:inline-grid w-24'>
+        <div
+          onClick={() => router.push("/")}
+          className='cursor-pointer relative hidden lg:inline-grid w-24'
+        >
           <Image
             src='https://links.papareact.com/ocw'
             layout='fill'
             objectFit='contain'
           />
         </div>
-        <div className='relative w-10  lg:hidden flex-shrink-0'>
+        <div
+          onClick={() => router.push("/")}
+          className='cursor-pointer relative w-10  lg:hidden flex-shrink-0'
+        >
           <Image
             src='https://links.papareact.com/jjm'
             layout='fill'
@@ -49,7 +66,7 @@ const Header = () => {
         {/* RIGHT */}
 
         <div className='flex items-center justify-end space-x-4'>
-          <HomeIcon className='h-10 navBtn' />
+          <HomeIcon onClick={() => router.push("/")} className='h-10 navBtn' />
           <MenuIcon className='h-6 md:hidden cursor-pointer' />
           {session ? (
             <>
@@ -59,12 +76,12 @@ const Header = () => {
                   3
                 </div>
               </div>
-              <PlusCircleIcon className='navBtn' />
+              <PlusCircleIcon onClick={triggerModal} className='navBtn' />
               <UserGroupIcon className='navBtn' />
               <HeartIcon className='navBtn' />
               <img
                 onClick={signOut}
-                src='/images/statue.jpeg'
+                src={session?.user?.image}
                 className='w-10 h-10 rounded-full cursor-pointer'
               />
             </>
