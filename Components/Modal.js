@@ -7,30 +7,50 @@ import { db, storage } from "../firebase";
 import {
   addDoc,
   collection,
+  doc,
   serverTimestamp,
-  Timestamp,
+  updateDoc,
 } from "firebase/firestore";
 import { useSession } from "next-auth/react";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 const Modal = () => {
   const { data: session } = useSession();
   const [open, setOpen] = useRecoilState(modalState);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [loading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const fileRef = useRef(null);
   const captionRef = useRef(null);
 
   const uploadPost = async () => {
-    if (loading) return;
+    if (isLoading) return;
 
-    setIsLoading();
+    setIsLoading(true);
 
     const docRef = await addDoc(collection(db, "posts"), {
       username: session.user.username,
+      userImg: session.user.image,
       caption: captionRef.current.value,
-      profileImg: session.user.image,
-      timeStamp: serverTimestamp(),
+      time: serverTimestamp(),
     });
+
+    console.log(`Adding doc :  ${docRef.id}`);
+
+    const imageRef = ref(storage, `posts/${docRef.id}/image`);
+
+    await uploadString(imageRef, selectedFile, "data_url").then(
+      async (snapshot) => {
+        const docUrl = await getDownloadURL(imageRef);
+
+        await updateDoc(doc(db, "posts", docRef.id), {
+          image: docUrl,
+        });
+      }
+    );
+
+    setIsLoading(false);
+    setOpen(false);
+    setSelectedFile(null);
   };
 
   const addImageToPost = (e) => {
@@ -123,12 +143,13 @@ const Modal = () => {
                 </div>
                 <div className='mt-5 sm:mt-6'>
                   <button
+                    disabled={!selectedFile}
                     type='button'
                     className='inline-flex justify-center w-full bg-red-600 rounded-md text-white border border-transparent shadow-sm hover:bg-red-700 text-base font-medium focus:outline-none
-                        focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm p-1'
+                        focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm p-1 disabled:cursor-not-allowed hover:disabled:bg-gray-400'
                     onClick={uploadPost}
                   >
-                    Upload Post
+                    {isLoading ? "Loading..." : "Upload Post"}
                   </button>
                 </div>
               </div>

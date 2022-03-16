@@ -18,7 +18,6 @@ const Header = () => {
   const router = useRouter();
 
   const [toggleModal, setToggleModal] = useRecoilState(modalState);
-  console.log(session);
 
   const triggerModal = () => {
     setToggleModal(true);
@@ -30,13 +29,9 @@ const Header = () => {
         {/* LEFT Logo*/}
         <div
           onClick={() => router.push("/")}
-          className='cursor-pointer relative hidden lg:inline-grid w-24'
+          className='cursor-pointer relative hidden lg:inline-grid items-center'
         >
-          <Image
-            src='https://links.papareact.com/ocw'
-            layout='fill'
-            objectFit='contain'
-          />
+          <h1 className='text-xl font-semibold italic'>INSTAGRAM 2.0</h1>
         </div>
         <div
           onClick={() => router.push("/")}
