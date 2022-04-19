@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 const Header = () => {
-  const { systemTheme, theme, setTheme } = useTheme();
+  const { systemTheme, theme, setTheme } = useTheme("dark");
   const { data: session } = useSession();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
