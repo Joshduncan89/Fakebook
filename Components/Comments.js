@@ -23,7 +23,7 @@ const Comments = ({ id }) => {
   );
   return (
     <div className='ml-10 h-20 overflow-y-scroll scrollbar-thin scrollbar-thumb-black'>
-      {comments.length > 0 &&
+      {comments.length > 0 ? (
         comments.map((comment) => (
           <div className='flex items-center space-x-2 mb-3' key={comment.id}>
             <img className='rounded-full h-7' src={comment.data().userImg} />
@@ -35,7 +35,10 @@ const Comments = ({ id }) => {
               {comment.data().time?.toDate()}
             </Moment>
           </div>
-        ))}
+        ))
+      ) : (
+        <p className='text-center -ml-10'>No comments</p>
+      )}
     </div>
   );
 };

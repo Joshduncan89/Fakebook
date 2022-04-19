@@ -14,7 +14,7 @@ const Stories = () => {
     setFakeData(suggestions);
   }, []);
   return (
-    <div className='flex space-x-2 p-6 overflow-x-scroll mt-8 border-gray-200 border scrollbar-thin scrollbar-thumb-black'>
+    <div className='flex space-x-2 p-6 overflow-x-scroll mt-8 border-gray-200 border scrollbar-thin scrollbar-thumb-black dark:bg-gray-700 dark:scrollbar-thumb-red-500 dark:border-red-500'>
       {session && (
         <Story img={session?.user?.image} username={session?.user?.username} />
       )}

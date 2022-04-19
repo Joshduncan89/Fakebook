@@ -68,13 +68,13 @@ const Post = ({ username, caption, userImg, image, id }) => {
     });
   };
   return (
-    <div className='border bg-white rounded-sm my-7'>
+    <div className='border bg-white rounded-sm my-7 compBg dark:text-black'>
       {/* HEADER */}
 
       <div className='flex items-center p-5'>
         <img src={userImg} className='h-12 w-12 rounded-full border p-1 mr-3' />
         <p className='flex-1 font-bold'>{username}</p>
-        <DotsHorizontalIcon className='h-5' />
+        <DotsHorizontalIcon className='h-5 cursor-pointer' />
       </div>
 
       {/* IMAGE */}
@@ -109,25 +109,26 @@ const Post = ({ username, caption, userImg, image, id }) => {
           {username} <span className='font-normal'> {caption}</span>
         </p>
       </div>
+      <hr className='bg-black dark:bg-black mb-3 w-[90%] mx-auto' />
 
       <Comments id={id} />
 
       {/* INPUT BOX */}
       {session && (
-        <form className='flex items-center p-4'>
+        <form className='flex items-center p-4 '>
           <EmojiHappyIcon className='h-5' />
           <input
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             type='text'
-            className='flex-1 border-none focus:ring-0 outline-none'
+            className='flex-1 border-none focus:ring-0 outline-none rounded-md mx-3 bg-gray-100'
             placeholder='Add a comment...'
           />
           <button
             type='submit'
             onClick={sendComment}
             disabled={!comment.trim()}
-            className='font-semibold text-blue-400'
+            className='font-semibold text-blue-400 dark:text-blue-800 cursor-pointer'
           >
             Post
           </button>

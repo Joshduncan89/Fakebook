@@ -34,8 +34,6 @@ const Modal = () => {
       time: serverTimestamp(),
     });
 
-    console.log(`Adding doc :  ${docRef.id}`);
-
     const imageRef = ref(storage, `posts/${docRef.id}/image`);
 
     await uploadString(imageRef, selectedFile, "data_url").then(
@@ -59,6 +57,7 @@ const Modal = () => {
       reader.readAsDataURL(e.target.files[0]);
     }
     reader.onload = (readerEvent) => {
+      console.log(readerEvent);
       setSelectedFile(readerEvent.target.result);
     };
   };
@@ -131,7 +130,7 @@ const Modal = () => {
                         onChange={addImageToPost}
                       />
                     </div>
-                    <div className='mt-2 '>
+                    <div className='mt-2 dark:text-black'>
                       <input
                         ref={captionRef}
                         type='text'

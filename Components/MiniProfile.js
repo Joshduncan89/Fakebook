@@ -11,9 +11,9 @@ const MiniProfile = () => {
         className='rounded-full h-14 w-14'
         src={session?.user?.image ? session.user.image : "/images/statue.jpeg"}
       />
-      <div>
+      <div className='-ml-3'>
         <h2 className='font-bold'>{session?.user?.username}</h2>
-        <h2 className='text-gray-400'>Welcome to Instagram 2.0</h2>
+        <h2 className='text-gray-400'>Welcome to FAKEBOOK</h2>
       </div>
       <button onClick={signOut} className='text-blue-500 font-semibold'>
         Sign Out
