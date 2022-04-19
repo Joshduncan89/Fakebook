@@ -20,13 +20,14 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 const Header = () => {
-  const { systemTheme, theme, setTheme } = useTheme("dark");
+  const { systemTheme, theme, setTheme } = useTheme();
   const { data: session } = useSession();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [toggleModal, setToggleModal] = useRecoilState(modalState);
 
   useEffect(() => {
+    setTheme("dark");
     setMounted(true);
   }, []);
 
