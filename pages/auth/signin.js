@@ -11,9 +11,9 @@ function Login({ providers }) {
       <Header />
       <div className='flex flex-col items-center bg-gray-100 min-h-screen w-full dark:bg-black dark:text-white pt-20'>
         <div className='flex flex-col items-center mb-20'>
-          <div className='text-5xl lg:text-8xl font-semibold font-lobster'>
+          <h1 className='text-5xl lg:text-8xl font-semibold font-lobster'>
             FAKEBOOK
-          </div>
+          </h1>
           <p className='font-sm italic'>
             This is not a real application.Built for educational purposes only
           </p>

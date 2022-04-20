@@ -91,77 +91,82 @@ const Dropdownbar = () => {
                 </button>
               )}
             </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  disabled
-                  className={`${
-                    active ? "bg-slate-500 text-white" : "text-gray-900"
-                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                >
-                  {active ? (
-                    <PaperAirplaneIcon
-                      className='mr-2 h-5 w-5'
-                      aria-hidden='true'
-                    />
-                  ) : (
-                    <PaperAirplaneIcon
-                      className='mr-2 h-5 w-5'
-                      aria-hidden='true'
-                    />
+            {session && (
+              <>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      disabled
+                      className={`${
+                        active ? "bg-slate-500 text-white" : "text-gray-900"
+                      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                    >
+                      {active ? (
+                        <PaperAirplaneIcon
+                          className='mr-2 h-5 w-5'
+                          aria-hidden='true'
+                        />
+                      ) : (
+                        <PaperAirplaneIcon
+                          className='mr-2 h-5 w-5'
+                          aria-hidden='true'
+                        />
+                      )}
+                      Share
+                    </button>
                   )}
-                  Share
-                </button>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  onClick={triggerModal}
-                  className={`${
-                    active ? "bg-slate-500 text-white" : "text-gray-900"
-                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  href='/contribute'
-                >
-                  {active ? (
-                    <DocumentAddIcon
-                      className='mr-2 h-5 w-5'
-                      aria-hidden='true'
-                    />
-                  ) : (
-                    <DocumentAddIcon
-                      className='mr-2 h-5 w-5'
-                      aria-hidden='true'
-                    />
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      disabled={!session}
+                      onClick={triggerModal}
+                      className={`${
+                        active ? "bg-slate-500 text-white" : "text-gray-900"
+                      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      href='/contribute'
+                    >
+                      {active ? (
+                        <DocumentAddIcon
+                          className='mr-2 h-5 w-5'
+                          aria-hidden='true'
+                        />
+                      ) : (
+                        <DocumentAddIcon
+                          className='mr-2 h-5 w-5'
+                          aria-hidden='true'
+                        />
+                      )}
+                      New Post
+                    </button>
                   )}
-                  New Post
-                </button>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  disabled
-                  onClick={logout}
-                  className={`${
-                    active ? "bg-slate-500 text-white" : "text-gray-900"
-                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                >
-                  {active ? (
-                    <UserGroupIcon
-                      className='mr-2 h-5 w-5'
-                      aria-hidden='true'
-                    />
-                  ) : (
-                    <UserGroupIcon
-                      className='mr-2 h-5 w-5'
-                      aria-hidden='true'
-                    />
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      disabled
+                      onClick={logout}
+                      className={`${
+                        active ? "bg-slate-500 text-white" : "text-gray-900"
+                      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                    >
+                      {active ? (
+                        <UserGroupIcon
+                          className='mr-2 h-5 w-5'
+                          aria-hidden='true'
+                        />
+                      ) : (
+                        <UserGroupIcon
+                          className='mr-2 h-5 w-5'
+                          aria-hidden='true'
+                        />
+                      )}
+                      Discover
+                    </button>
                   )}
-                  Discover
-                </button>
-              )}
-            </Menu.Item>
+                </Menu.Item>
+              </>
+            )}
             <Menu.Item>
               {({ active }) => (
                 <div

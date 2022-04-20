@@ -1,9 +1,7 @@
 import {
   PlusCircleIcon,
   SearchIcon,
-  HeartIcon,
   UserGroupIcon,
-  MenuIcon,
   PaperAirplaneIcon,
 } from "@heroicons/react/outline";
 import {
