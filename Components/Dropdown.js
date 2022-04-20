@@ -4,7 +4,7 @@ import { LogoutIcon } from "@heroicons/react/solid";
 
 import { DocumentAddIcon } from "@heroicons/react/solid";
 
-import { signOut, useSession } from "next-auth/react";
+import { signOut, useSession, signIn } from "next-auth/react";
 import {
   HomeIcon,
   MenuIcon,
@@ -59,8 +59,8 @@ const Dropdownbar = () => {
   return (
     <Menu as='div' className='relative inline-block md:hidden'>
       <div className='flex items-center justify-center'>
-        <Menu.Button className='inline-flex w-full justify-center items-center  text-sm font-medium text-black dark:text-white hover:bg-opacity-30  focus:outline-none '>
-          <MenuIcon className='h-7 w-7' />
+        <Menu.Button className='inline-flex w-full justify-center items-center  text-sm font-medium text-black dark:text-white hover:bg-opacity-30  focus:outline-none'>
+          <MenuIcon className='h-7 w-7 -mr-3' />
         </Menu.Button>
       </div>
       <Transition
@@ -185,7 +185,7 @@ const Dropdownbar = () => {
             <Menu.Item>
               {({ active }) => (
                 <button
-                  onClick={logout}
+                  onClick={() => (session ? signOut() : signIn())}
                   className={`${
                     active ? "bg-slate-500 text-white" : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
@@ -195,7 +195,7 @@ const Dropdownbar = () => {
                   ) : (
                     <LogoutIcon className='mr-2 h-5 w-5' aria-hidden='true' />
                   )}
-                  Logout
+                  {session ? "Logout" : "Sign In"}
                 </button>
               )}
             </Menu.Item>

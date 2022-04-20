@@ -116,7 +116,9 @@ const Header = () => {
             </>
           ) : (
             <div>
-              <button onClick={signIn}>Sign In</button>
+              <button className='hidden md:inline-block' onClick={signIn}>
+                Sign In
+              </button>
             </div>
           )}
         </div>
