@@ -18,6 +18,7 @@ import { modalState } from "../atoms/modalAtoms";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import Dropdownbar from "./Dropdown";
 
 const Header = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -43,13 +44,13 @@ const Header = () => {
     if (currentTheme === "dark") {
       return (
         <SunIcon
-          className='h-7 w-7 cursor-pointer hover:scale-125 transition-all duration-75 ease-out hover:fill-yellow-300 '
+          className='hidden md:inline-block h-7 w-7 cursor-pointer hover:scale-125 transition-all duration-75 ease-out hover:fill-yellow-300 '
           onClick={() => setTheme("light")}
         />
       );
     } else {
       return (
-        <div className='flex items-center justify-center hover:bg-black/5 rounded-full hover:scale-110  transition-all duration-75 ease-out group h-8 w-8'>
+        <div className='hidden md:inline-flex items-center justify-center hover:bg-black/5 rounded-full hover:scale-110  transition-all duration-75 ease-out group h-8 w-8'>
           <MoonIcon
             className='h-7 w-7 cursor-pointer  group-hover:fill-yellow-600'
             onClick={() => setTheme("dark")}
@@ -67,9 +68,7 @@ const Header = () => {
           onClick={() => router.push("/")}
           className='cursor-pointer relative hidden lg:inline-grid lg:ml-3 items-center'
         >
-          <h1 style={{}} className='text-xl font-lobster'>
-            FAKEBOOK
-          </h1>
+          <h1 className='text-xl font-lobster'>FAKEBOOK</h1>
         </div>
 
         <AcademicCapIcon
@@ -98,7 +97,7 @@ const Header = () => {
           {renderTheme()}
 
           <HomeIcon onClick={() => router.push("/")} className='h-10 navBtn' />
-          <MenuIcon className='h-6 md:hidden cursor-pointer' />
+          <Dropdownbar />
           {session ? (
             <>
               <div className='relative navBtn'>
@@ -112,11 +111,13 @@ const Header = () => {
               <img
                 onClick={signOut}
                 src={session?.user?.image}
-                className='w-10 h-10 rounded-full cursor-pointer'
+                className='hidden md:inline-block w-10 h-10 rounded-full cursor-pointer'
               />
             </>
           ) : (
-            <button onClick={signIn}>Sign In</button>
+            <div>
+              <button onClick={signIn}>Sign In</button>
+            </div>
           )}
         </div>
       </div>

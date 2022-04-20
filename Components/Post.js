@@ -101,7 +101,7 @@ const Post = ({ username, caption, userImg, image, id }) => {
       )}
 
       {/* COMMENTS */}
-      <div className='px-5 py-2 truncate'>
+      <div className='px-5 py-2'>
         {likes.length > 0 && (
           <p className='font-bold mb-1 text-sm'>{likes.length} likes </p>
         )}
@@ -109,7 +109,7 @@ const Post = ({ username, caption, userImg, image, id }) => {
           {username} <span className='font-normal'> {caption}</span>
         </p>
       </div>
-      <hr className='bg-black dark:bg-black mb-3 w-[90%] mx-auto' />
+      <hr className='dark:bg-black my-4 border-[1px] border-black mx-auto w-[90%]' />
 
       <Comments id={id} />
 
