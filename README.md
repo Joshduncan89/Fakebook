@@ -6,7 +6,7 @@ React Social Media Clone
 * Google Firebase
 * Tailwind CSS
 * NextJS routing
-
+* FakeData API
 
 ## Available Scripts
 -Npm run dev
