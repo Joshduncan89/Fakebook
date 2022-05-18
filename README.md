@@ -7,6 +7,7 @@ React Social Media Clone
 * Tailwind CSS
 * NextJS routing
 * FakeData API
+* Light/Dark Mode
 
 ## Available Scripts
 -Npm run dev
